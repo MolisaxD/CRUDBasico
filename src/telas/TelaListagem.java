@@ -29,9 +29,14 @@ public class TelaListagem extends javax.swing.JFrame {
         }
         */
         txtLista.setText("");
-        for (Pessoa p : getListaPessoas()) {
-            txtLista.setText(txtLista.getText() + p.mostrarDados() + "\n");
+        
+        for (int i = 0; i < listaPessoas.size(); i++) {
+            txtLista.setText(txtLista.getText() + "ID: " + i + ", " + listaPessoas.get(i).mostrarDados() + "\n");
         }
+        
+        /*for (Pessoa p : getListaPessoas()) {
+            txtLista.setText(txtLista.getText() + p.mostrarDados() + "\n");
+        }*/
     }
     
     public void cadastrarPessoa(Pessoa pessoa) {
@@ -59,6 +64,8 @@ public class TelaListagem extends javax.swing.JFrame {
         btCadastro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtLista = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        txtIdDelete = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +79,11 @@ public class TelaListagem extends javax.swing.JFrame {
         });
 
         btExcluir.setText("Excluir");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
 
         btCadastro.setText("Cadastrar");
         btCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +95,14 @@ public class TelaListagem extends javax.swing.JFrame {
         txtLista.setColumns(20);
         txtLista.setRows(5);
         jScrollPane1.setViewportView(txtLista);
+
+        jLabel2.setText("ID:");
+
+        txtIdDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,12 +119,19 @@ public class TelaListagem extends javax.swing.JFrame {
                 .addContainerGap(66, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btCadastro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btAlterar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btExcluir)
-                .addGap(90, 90, 90))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIdDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btCadastro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btAlterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btExcluir)
+                        .addGap(94, 94, 94))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,13 +139,17 @@ public class TelaListagem extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtIdDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAlterar)
                     .addComponent(btExcluir)
                     .addComponent(btCadastro))
-                .addGap(35, 35, 35))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,6 +167,17 @@ public class TelaListagem extends javax.swing.JFrame {
         TelaEdit telaEdit = new TelaEdit(this);
         telaEdit.setVisible(true);
     }//GEN-LAST:event_btAlterarActionPerformed
+
+    private void txtIdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdDeleteActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        // TODO add your handling code here:
+        listaPessoas.remove(Integer.parseInt(txtIdDelete.getText()));
+        
+        listarPessoas();
+    }//GEN-LAST:event_btExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,7 +219,9 @@ public class TelaListagem extends javax.swing.JFrame {
     private javax.swing.JButton btCadastro;
     private javax.swing.JButton btExcluir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField txtIdDelete;
     private javax.swing.JTextArea txtLista;
     // End of variables declaration//GEN-END:variables
 
