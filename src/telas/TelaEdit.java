@@ -44,6 +44,7 @@ public class TelaEdit extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cbPessoa = new javax.swing.JComboBox<>();
+        btVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +64,13 @@ public class TelaEdit extends javax.swing.JFrame {
         cbPessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbPessoaActionPerformed(evt);
+            }
+        });
+
+        btVoltar.setText("Voltar");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarActionPerformed(evt);
             }
         });
 
@@ -90,8 +98,10 @@ public class TelaEdit extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btVoltar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btAtualizar)
-                        .addGap(84, 84, 84)))
+                        .addGap(41, 41, 41)))
                 .addGap(74, 74, 74))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -116,7 +126,9 @@ public class TelaEdit extends javax.swing.JFrame {
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(btAtualizar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btAtualizar)
+                    .addComponent(btVoltar))
                 .addGap(49, 49, 49))
         );
 
@@ -145,6 +157,11 @@ public class TelaEdit extends javax.swing.JFrame {
         txtIdade.setText(String.valueOf(telaLista.getListaPessoas().get(cbPessoa.getSelectedIndex()).getIdade()));
         txtCpf.setText(telaLista.getListaPessoas().get(cbPessoa.getSelectedIndex()).getCpf());
     }//GEN-LAST:event_cbPessoaActionPerformed
+
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,6 +199,7 @@ public class TelaEdit extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAtualizar;
+    private javax.swing.JButton btVoltar;
     private javax.swing.JComboBox<String> cbPessoa;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
